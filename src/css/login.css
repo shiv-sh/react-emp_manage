@@ -1,0 +1,39 @@
+.backgroundStyling {
+  height: 100vh;
+  background-image: linear-gradient(to right bottom, rgba(126,213,111,0.8),rgba(0, 217, 255, 0.8)),url('../images/login.jpg');
+  background-size: cover;
+  background-position: top;
+  position: relative;
+  /* background: url('../images/login.jpg') center center / cover no-repeat fixed; */
+  }
+  .backgroundNoStyling {
+    background : none;
+  }
+
+  .logo-img {
+    content: url('../images/logo.png')
+  }
+  .search-icon {
+    margin-top: 10px;
+    color: lightgray;
+  }
+  .ver-line {
+    border: 1px solid lightgray;
+  }
+
+  input {
+    border-top-style: hidden !important;
+    border-right-style: hidden !important;
+    border-left-style: hidden !important;
+    border-bottom-style: groove !important;
+    border-radius: 0 !important;
+    width: 100%
+  }
+  input:focus {
+    outline: none !important;
+    border-bottom-color: rgb(12, 180, 231);
+  }
+  .input-label {
+    font-family: sans-serif;
+    color: grey;
+  }
