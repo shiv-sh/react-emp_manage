@@ -18,7 +18,7 @@ export default function BadgeAvatars(props) {
   const classes = useStyles();
   let data = props.empdata;
   if(data.availability){
-      var color = '#44b700'
+      var color = '#00FFEA'
   } else {
     var color = '#808080'
   }

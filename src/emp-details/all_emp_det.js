@@ -5,7 +5,7 @@ export const employees = [
         department:"Engineering",
         phone:"112233324",
         availability:true,
-        picture:"../images/avatar_girl.png"
+        picture:"../images/avatar-girl.png"
     },
     {
         name:"David Warner",
@@ -13,7 +13,7 @@ export const employees = [
         department:"Sales",
         phone:"112233324",
         availability:true,
-        picture:"../images/avatar_boy.png"
+        picture:"../images/avatar-boy.png"
     },
     {
         name:"Mathey Hayden",
@@ -21,7 +21,7 @@ export const employees = [
         department:"Finance",
         phone:"112233324",
         availability:false,
-        picture:"../images/avatar_boy.png"
+        picture:"../images/avatar-boy.png"
     },
     {
         name:"Suzan Mathew",
@@ -29,7 +29,7 @@ export const employees = [
         department:"Design",
         phone:"112233324",
         availability:true,
-        picture:"../images/avatar_girl.png"
+        picture:"../images/avatar-girl.png"
     },
     {
         name:"Lisa Bradford",
@@ -37,7 +37,7 @@ export const employees = [
         department:"Engineering",
         phone:"112233324",
         availability:false,
-        picture:"../images/avatar_girl.png"
+        picture:"../images/avatar-girl.jpeg"
     },
     {
         name:"Paul Breny",
@@ -45,6 +45,6 @@ export const employees = [
         department:"Marketing",
         phone:"112233324",
         availability:true,
-        picture:"../images/avatar_boy.png"
+        picture:"../images/avatar-boy.png"
     }
 ]

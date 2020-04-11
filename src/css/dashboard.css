@@ -78,7 +78,7 @@
   .green-dot {
         height: 9px;
         width: 9px;
-        background-color: #44b700;
+        background-color: rgb(0, 255, 234);
         border-radius: 50%;
         display: inline-block;
   }
@@ -88,4 +88,12 @@
     background-color:red;
     border-radius: 50%;
     display: inline-block;
+}
+.avail-color {
+    color: rgb(0, 255, 234);
+    font-weight: 500;
+}
+.not-avail-color {
+    color:red;
+    font-weight: 500;
 }
