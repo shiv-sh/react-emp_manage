@@ -114,3 +114,7 @@
     overflow: auto;
     height: 277px;
 }
+.dropdown-alpha {
+    font-size: 13px !important;
+    padding: 0 !important;
+}

@@ -41,13 +41,13 @@ class SearchResults extends Component {
         return (
             <div className="search-results-div">
                 <div>
-                    <Row style={{margin:'0'}}>
-                        <Col md="5" style={{padding:'0'}}>
+                    <Row style={{ margin: '0' }}>
+                        <Col md="5" style={{ padding: '0' }}>
                             <InputGroup className="name-filter">
                                 <InputGroupAddon className="input-group-text input-box" addonType="prepend">
                                     <FontAwesomeIcon style={{ 'marginTop': 'inherit' }} className="search-icon" icon={faSearch}></FontAwesomeIcon>
                                 </InputGroupAddon>
-                                <Input className="name-filter" style={{ 'border': '0', 'padding': '0',fontSize:'15px' }}
+                                <Input className="name-filter" style={{ 'border': '0', 'padding': '0', fontSize: '15px' }}
                                     type="text"
                                     name="inputBox"
                                     id="searchByName"
@@ -55,24 +55,40 @@ class SearchResults extends Component {
                                 />
                             </InputGroup>
                         </Col>
-                        <Col md="7">
+                        <Col md="6" style={{padding:'0px'}}>
+                        <Row style={{margin:'0'}}>
+                        <Col md="3" style={{padding:'0'}}>
+                        <span style={{fontSize:'13px',color:'grey'}}>Sort by:</span>
+                        </Col>
+                        <Col md="7" style={{padding:'0'}}>
+                            <FormGroup>
+                                <Input className="dropdown-alpha" type="select" name="select" id="exampleSelect">
+                                    <option>Alphabetical A-Z</option>
+                                </Input>
+                            </FormGroup>
+                            </Col>
+                            <Col md="2">
+                            <FontAwesomeIcon style={{ 'marginTop': 'inherit',height:'12px' }} icon={faBars}></FontAwesomeIcon>
+                            </Col>
+                            
+                            </Row>
                         </Col>
                     </Row>
                 </div>
                 <div className="search-results-table">
-                <Table style={{ 'height': this.height }}>
-                    <thead>
-                        <tr>
-                            <th className="table-heading">Name</th>
-                            <th className="table-heading">Department</th>
-                            <th className="table-heading">Phone Number</th>
-                            <th className="table-heading">Availabilty</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {this.empData}
-                    </tbody>
-                </Table>
+                    <Table style={{ 'height': this.height }}>
+                        <thead>
+                            <tr>
+                                <th className="table-heading">Name</th>
+                                <th className="table-heading">Department</th>
+                                <th className="table-heading">Phone Number</th>
+                                <th className="table-heading">Availabilty</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {this.empData}
+                        </tbody>
+                    </Table>
                 </div>
             </div>
         );
