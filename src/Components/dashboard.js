@@ -38,7 +38,7 @@ class Dashboard extends React.Component {
         <Row style={{'margin':'0'}}>
           <Navbar1 />
         </Row>
-        <Row>
+        <Row style={{margin:'0'}}>
           <Col md="10">
             <Search />
             <div className="adv-fil"><span className="adv-filter-text"><FontAwesomeIcon style={{ 'marginTop': 'inherit' }} icon={faBars}></FontAwesomeIcon> Advanced Filter</span></div>

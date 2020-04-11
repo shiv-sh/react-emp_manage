@@ -4,7 +4,7 @@ import '../css/dashboard.css';
 import BadgeAvatars from './avatar';
 import { Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faTh, faBell, faBars } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faTh, faBell, faBars, faEllipsisV } from "@fortawesome/free-solid-svg-icons";
 import { InputGroup, InputGroupAddon, InputGroupText, Input, FormGroup } from 'reactstrap';
 
 
@@ -31,6 +31,7 @@ class SearchResults extends Component {
                 <td style={{ fontSize: '13px' }} key={item.id}>{item.phone}</td>
                 <td style={{ fontSize: '13px', padding: '0', paddingTop: '10px' }} key={item.id}><span className={item.availability ? 'green-dot mr-1' : 'red-dot mr-1'}>
                 </span><span className={item.availability ? 'avail-color' : 'not-avail-color'}>{item.availability ? 'Available' : 'Out'}</span></td>
+                <td style={{ fontSize: '13px' }} key={item.id}><FontAwesomeIcon icon={faEllipsisV} className='float-left ml-1' /></td>
             </tr>)
         })
     }
@@ -38,15 +39,15 @@ class SearchResults extends Component {
 
     render() {
         return (
-            <div style={{ height: '306px', overflow: 'auto', padding: '30px' }}>
+            <div className="search-results-div">
                 <div>
-                    <Row>
-                        <Col md="5">
-                            <InputGroup className="name-search">
+                    <Row style={{margin:'0'}}>
+                        <Col md="5" style={{padding:'0'}}>
+                            <InputGroup className="name-filter">
                                 <InputGroupAddon className="input-group-text input-box" addonType="prepend">
                                     <FontAwesomeIcon style={{ 'marginTop': 'inherit' }} className="search-icon" icon={faSearch}></FontAwesomeIcon>
                                 </InputGroupAddon>
-                                <Input style={{ 'border': '0', 'padding': '0' }}
+                                <Input className="name-filter" style={{ 'border': '0', 'padding': '0',fontSize:'15px' }}
                                     type="text"
                                     name="inputBox"
                                     id="searchByName"
@@ -58,6 +59,7 @@ class SearchResults extends Component {
                         </Col>
                     </Row>
                 </div>
+                <div className="search-results-table">
                 <Table style={{ 'height': this.height }}>
                     <thead>
                         <tr>
@@ -70,12 +72,8 @@ class SearchResults extends Component {
                     <tbody>
                         {this.empData}
                     </tbody>
-
-                    <tbody>
-
-
-                    </tbody>
                 </Table>
+                </div>
             </div>
         );
     }
