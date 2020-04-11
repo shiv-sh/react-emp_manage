@@ -22,6 +22,9 @@ class Dashboard extends React.Component {
     this.state = {loggedInUser:props.loggedInUser,Employees:employees};
     console.log(props.loggedInUser)
   }
+  componentDidMount() {
+    document.body.className = 'backgroundStylingDashboard'
+  }
 
   render() {
 

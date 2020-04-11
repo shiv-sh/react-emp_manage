@@ -6,10 +6,17 @@
     border-radius: 10px 10px 0 0;
     margin-top: -1px;
 }
+.backgroundStylingDashboard {
+  background-image: linear-gradient(to right,rgba(0, 217, 255, 0.8), rgba(126,213,111,0.8));
+  background-size: cover;
+  background-position: top;
+  position: relative;
+}
 .dash-card {
     width: 100% !important;
     border-radius: 10px !important;
-    height: 90vh
+    height: 97vh;
+    margin-top: 3vh;
 }
 .form-layout{
     background-color: #fff;
@@ -61,3 +68,24 @@
     border-radius: 0 !important;
     margin-top: 1px;
   }
+  .table-heading {
+      font-size: 12px;
+  }
+  .emp-role {
+      font-size:smaller;
+      color: grey
+  }
+  .green-dot {
+        height: 9px;
+        width: 9px;
+        background-color: #44b700;
+        border-radius: 50%;
+        display: inline-block;
+  }
+  .red-dot {
+    height: 9px;
+    width: 9px;
+    background-color:red;
+    border-radius: 50%;
+    display: inline-block;
+}
