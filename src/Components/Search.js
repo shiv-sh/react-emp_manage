@@ -11,13 +11,18 @@ import { InputGroup, InputGroupAddon, InputGroupText, Input, FormGroup } from 'r
 class Search extends Component {
     constructor(){
         super()
-        this.state = {inputName:"",department:"",availability:""};
+        this.state = {inputName:"",department:"All",availability:'All'};
         this.previousState = this.state;
     }
 
-    handleInputName = (e) =>{
+    handleInputName = (e) => {
         this.previousState = this.state;
         this.setState({inputName:e.target.value});
+    }
+    handleDepartmentChange = (e) => {
+        this.previousState = this.state;
+        console.log(e.target.value);
+        this.setState({department:e.target.value});
     }
     submitchange = (event) => {
         event.preventDefault();
@@ -68,12 +73,13 @@ class Search extends Component {
                                     <Col md="3" style={{ padding: "0" }}>
                                         <FormGroup>
                                             <div className="input-label">Department</div>
-                                            <Input className="dep-select" type="select" name="select" id="exampleSelect">
+                                            <Input onChange={this.handleDepartmentChange} value = {this.state.department}
+                                             className="dep-select" type="select" name="select" id="exampleSelect">
                                                 <option>All</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
+                                                <option>Engineering</option>
+                                                <option>Finance</option>
+                                                <option>Design</option>
+                                                <option>Marketting</option>
                                             </Input>
                                         </FormGroup>
                                     </Col>

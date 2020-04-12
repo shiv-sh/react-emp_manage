@@ -15,6 +15,15 @@ class SearchResults extends Component {
         console.log(props)
         this.state = {empList:props.empList}
         this.employes = props.empList;
+    }
+
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({ empList: nextProps.empList }); 
+      }
+
+
+    render() {
         this.empData = this.state.empList.map((item, index) => {
             return (<tr key={index} style={{ 'padding': '0' }}>
                 <td style={{ 'padding': '0', fontSize: '13px', width: '100%' }}>
@@ -35,10 +44,6 @@ class SearchResults extends Component {
                 <td style={{ fontSize: '13px' }}><FontAwesomeIcon icon={faEllipsisV} className='float-left ml-1' /></td>
             </tr>)
         })
-    }
-
-
-    render() {
         return (
             <div className="search-results-div">
                 <div>
@@ -76,6 +81,7 @@ class SearchResults extends Component {
                         </Col>
                     </Row>
                 </div>
+                {this.state.empList.length>0?
                 <div className="search-results-table">
                     <Table style={{ 'height': this.height }}>
                         <thead>
@@ -90,7 +96,8 @@ class SearchResults extends Component {
                             {this.empData}
                         </tbody>
                     </Table>
-                </div>
+                </div>:<div><h4>No Results Found..</h4></div>
+                }
             </div>
         );
     }
