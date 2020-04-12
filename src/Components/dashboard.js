@@ -32,9 +32,40 @@ class Dashboard extends React.Component {
       let emp = employees.filter(val=> {
          return val.name.toLocaleLowerCase() === data.inputName.toLocaleLowerCase();
       })
-      console.log("filtered",emp)
       this.setState({Employees:emp},()=>{console.log(this.state)})
-    }  
+    } else {
+      if(data.department==="All"){
+        this.setState({Employees:employees})
+      } if(data.department!=="All") {
+      let emp = employees.filter(val=> {
+        return val.department.toLocaleLowerCase() === data.department.toLocaleLowerCase();
+     })
+     this.setState({Employees:emp})
+    }
+    if(data.availability!=="All"){
+      if(data.department!=="All"){
+      if(data.availability.toLocaleLowerCase()==="available"){
+        this.setState({Employees:employees.filter(val=> {
+          return val.availability===true && val.department===data.department;
+       })})
+      } else {
+        this.setState({Employees:employees.filter(val=> {
+          return val.availability===false && val.department===data.department;
+       })})
+      }
+    } else {
+      if(data.availability.toLocaleLowerCase()==="available"){
+        this.setState({Employees:employees.filter(val=> {
+          return val.availability===true;
+       })})
+      } else {
+        this.setState({Employees:employees.filter(val=> {
+          return val.availability===false;
+       })})
+      }
+    }
+    }
+    } 
   }
 
   render() {

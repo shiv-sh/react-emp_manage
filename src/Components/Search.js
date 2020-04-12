@@ -24,11 +24,16 @@ class Search extends Component {
         console.log(e.target.value);
         this.setState({department:e.target.value});
     }
+    handleAvailabilityChange = (e) => {
+        this.previousState = this.state;
+        console.log(e.target.value);
+        this.setState({availability:e.target.value});
+    }
     submitchange = (event) => {
         event.preventDefault();
-        // if(this.state!==this.previousState){
+        if(this.state!==this.previousState){
             this.props.filterEmpList(this.state);
-        // }
+        }
     }
 
     render() {
@@ -79,19 +84,18 @@ class Search extends Component {
                                                 <option>Engineering</option>
                                                 <option>Finance</option>
                                                 <option>Design</option>
-                                                <option>Marketting</option>
+                                                <option>Marketing</option>
                                             </Input>
                                         </FormGroup>
                                     </Col>
                                     <Col md="2" style={{ padding: "0" }}>
                                         <FormGroup>
                                             <div className="input-label">Availability</div>
-                                            <Input className="dep-select" type="select" name="select" id="exampleSelect">
+                                            <Input onChange={this.handleAvailabilityChange} className="dep-select" value = {this.state.availability}
+                                             type="select" name="select" id="exampleSelect">
                                                 <option>All</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
+                                                <option>Available</option>
+                                                <option>Out</option>
                                             </Input>
                                         </FormGroup>
                                     </Col>
