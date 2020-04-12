@@ -34,7 +34,7 @@ export default function BadgeAvatars(props) {
 
   return (
     <span className={classes.root}>
-      <StyledBadge
+      {props.isBadge?<StyledBadge
         overlap="circle"
         anchorOrigin={{
           vertical: 'bottom',
@@ -43,7 +43,9 @@ export default function BadgeAvatars(props) {
         variant="dot"
       >
         <Avatar alt={props.name} src={props.picture} style={{height:'30px',width:'30px'}} />
-      </StyledBadge>
+      </StyledBadge>:<StyledBadge>
+        <Avatar alt={props.name} src={props.picture} style={{height:'60px',width:'60px'}} />
+      </StyledBadge>}
     </span>
   );
 }

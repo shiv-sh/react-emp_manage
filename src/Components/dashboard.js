@@ -19,12 +19,15 @@ import { employees } from "../emp-details/all_emp_det";
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {loggedInUser:props.loggedInUser,Employees:employees};
+    this.state = {loggedInUser:props.loggedInUser,Employees:employees,selectedEmployee:employees[0]};
     console.log(props.loggedInUser)
     this.filterEmpListSearch = this.filterEmpListSearch.bind(this);
   }
   componentDidMount() {
     document.body.className = 'backgroundStylingDashboard'
+  }
+  selectedEmployee(currentEmp){
+    this.setState({selectedEmployee:currentEmp})
   }
   filterEmpListSearch(data){
     console.log("uiui",data);
@@ -81,13 +84,13 @@ class Dashboard extends React.Component {
           <Navbar1 />
         </Row>
         <Row style={{margin:'0'}}>
-          <Col md="10">
+          <Col md="9">
             <Search filterEmpList={this.filterEmpListSearch} />
             <div className="adv-fil"><span className="adv-filter-text"><FontAwesomeIcon style={{ 'marginTop': 'inherit' }} icon={faBars}></FontAwesomeIcon> Advanced Filter</span></div>
-            <SearchResults empList = {this.state.Employees}/>
+            <SearchResults empList = {this.state.Employees} empDet = {this.selectedEmployee.bind(this)}/>
           </Col>
-          <Col md="2">
-            <EmployeeDetails />
+          <Col md="3">
+            <EmployeeDetails selectedEmp = {this.state.selectedEmployee} />
           </Col>
         </Row>
       </div>

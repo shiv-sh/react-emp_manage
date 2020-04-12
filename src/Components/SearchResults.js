@@ -13,29 +13,35 @@ class SearchResults extends Component {
     constructor(props) {
         super(props);
         console.log(props)
-        this.state = {empList:props.empList,selectedIndex:0}
+        this.state = { empList: props.empList, selectedEmp: props.empList[0], selectedEmpIndex: 0 }
         this.employes = props.empList;
         this.selectedEmployee = this.selectedEmployee.bind(this)
+        this.selIndex = 0;
     }
 
 
     componentWillReceiveProps(nextProps) {
-        this.setState({ empList: nextProps.empList }); 
-      }
+        this.setState({ empList: nextProps.empList });
+        if (nextProps.empList.length > 0) {
+            this.setState({ selectedEmp: nextProps.empList[0], selectedEmpIndex: 0 })
+        }
+    }
 
-      selectedEmployee(emp,i) {
-          console.log(emp);
-          this.setState({selectedIndex:i})
-      }  
+    selectedEmployee(emp, index) {
+        //check later why this.state.selectedEmpIndex is not working
+        this.selIndex = index;
+        this.setState({ selectedEmp: emp, selectedEmpIndex: index })
+        this.props.empDet(emp);
+    }
 
 
     render() {
-        this.empData = this.state.empList.map(function(item, index) {
-            return (<tr className={this.state.selectedIndex===index?'selected-row':''} onClick={()=>this.selectedEmployee(item,index)} key={index} style={{ 'padding': '0' }}>
+        this.empData = this.state.empList.map(function (item, index) {
+            return (<tr className={this.selIndex == index ? 'selected-row' : ''} onClick={() => this.selectedEmployee(item, index)} key={index} style={{ 'padding': '0' }}>
                 <td style={{ 'padding': '0', fontSize: '13px', width: '100%' }}>
                     <Row style={{ padding: '0', margin: '0', width: 'fit-content' }}>
                         <Col md="3" style={{ padding: '0' }}>
-                            <BadgeAvatars empdata={item} />
+                            <BadgeAvatars empdata={item} isBadge={true} />
                         </Col>
                         <Col md="9" style={{ padding: '1' }}>
                             <div>{item.name}</div>
@@ -67,42 +73,42 @@ class SearchResults extends Component {
                                 />
                             </InputGroup>
                         </Col>
-                        <Col md="6" style={{padding:'0px'}}>
-                        <Row style={{margin:'0'}}>
-                        <Col md="3" style={{padding:'0'}}>
-                        <span style={{fontSize:'13px',color:'grey'}}>Sort by:</span>
-                        </Col>
-                        <Col md="7" style={{padding:'0'}}>
-                            <FormGroup>
-                                <Input className="dropdown-alpha" type="select" name="select" id="exampleSelect">
-                                    <option>Alphabetical A-Z</option>
-                                </Input>
-                            </FormGroup>
-                            </Col>
-                            <Col md="2">
-                            <FontAwesomeIcon style={{ 'marginTop': 'inherit',height:'12px' }} icon={faBars}></FontAwesomeIcon>
-                            </Col>
-                            
+                        <Col md="6" style={{ padding: '0px' }}>
+                            <Row style={{ margin: '0' }}>
+                                <Col md="3" style={{ padding: '0' }}>
+                                    <span style={{ fontSize: '13px', color: 'grey' }}>Sort by:</span>
+                                </Col>
+                                <Col md="7" style={{ padding: '0' }}>
+                                    <FormGroup>
+                                        <Input className="dropdown-alpha" type="select" name="select" id="exampleSelect">
+                                            <option>Alphabetical A-Z</option>
+                                        </Input>
+                                    </FormGroup>
+                                </Col>
+                                <Col md="2">
+                                    <FontAwesomeIcon style={{ 'marginTop': 'inherit', height: '12px' }} icon={faBars}></FontAwesomeIcon>
+                                </Col>
+
                             </Row>
                         </Col>
                     </Row>
                 </div>
-                {this.state.empList.length>0?
-                <div className="search-results-table">
-                    <Table style={{ 'height': this.height }}>
-                        <thead>
-                            <tr>
-                                <th className="table-heading">Name</th>
-                                <th className="table-heading">Department</th>
-                                <th className="table-heading">Phone Number</th>
-                                <th className="table-heading">Availabilty</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {this.empData}
-                        </tbody>
-                    </Table>
-                </div>:<div><h4>No Results Found..</h4></div>
+                {this.state.empList.length > 0 ?
+                    <div className="search-results-table">
+                        <Table style={{ 'height': this.height }}>
+                            <thead>
+                                <tr>
+                                    <th className="table-heading">Name</th>
+                                    <th className="table-heading">Department</th>
+                                    <th className="table-heading">Phone Number</th>
+                                    <th className="table-heading">Availabilty</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {this.empData}
+                            </tbody>
+                        </Table>
+                    </div> : <div><h4>No Results Found..</h4></div>
                 }
             </div>
         );
