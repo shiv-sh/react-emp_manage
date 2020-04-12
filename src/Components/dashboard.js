@@ -21,9 +21,20 @@ class Dashboard extends React.Component {
     super(props);
     this.state = {loggedInUser:props.loggedInUser,Employees:employees};
     console.log(props.loggedInUser)
+    this.filterEmpListSearch = this.filterEmpListSearch.bind(this);
   }
   componentDidMount() {
     document.body.className = 'backgroundStylingDashboard'
+  }
+  filterEmpListSearch(data){
+    console.log("uiui",data);
+    if(data.inputName!=="") {
+      let emp = employees.filter(val=> {
+         return val.name.toLocaleLowerCase() === data.inputName.toLocaleLowerCase();
+      })
+      console.log("filtered",emp)
+      this.setState({Employees:emp},()=>{console.log(this.state)})
+    }  
   }
 
   render() {
@@ -40,7 +51,7 @@ class Dashboard extends React.Component {
         </Row>
         <Row style={{margin:'0'}}>
           <Col md="10">
-            <Search />
+            <Search filterEmpList={this.filterEmpListSearch} />
             <div className="adv-fil"><span className="adv-filter-text"><FontAwesomeIcon style={{ 'marginTop': 'inherit' }} icon={faBars}></FontAwesomeIcon> Advanced Filter</span></div>
             <SearchResults empList = {this.state.Employees}/>
           </Col>

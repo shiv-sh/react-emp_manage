@@ -1,6 +1,7 @@
 export const employees = [
     {
         name:"Cole Ashbury",
+        id:1,
         role:"Software Engineer",
         department:"Engineering",
         phone:"112233324",
@@ -9,6 +10,7 @@ export const employees = [
     },
     {
         name:"David Warner",
+        id:2,
         role:"Sales Consultant",
         department:"Sales",
         phone:"112233324",
@@ -17,6 +19,7 @@ export const employees = [
     },
     {
         name:"Mathey Hayden",
+        id:3,
         role:"Accountany",
         department:"Finance",
         phone:"112233324",
@@ -25,6 +28,7 @@ export const employees = [
     },
     {
         name:"Suzan Mathew",
+        id:4,
         role:"Product Designer",
         department:"Design",
         phone:"112233324",
@@ -33,6 +37,7 @@ export const employees = [
     },
     {
         name:"Lisa Bradford",
+        id:5,
         role:"Software Engineer",
         department:"Engineering",
         phone:"112233324",
@@ -41,6 +46,7 @@ export const employees = [
     },
     {
         name:"Paul Breny",
+        id:6,
         role:"Marketing Coordinator",
         department:"Marketing",
         phone:"112233324",

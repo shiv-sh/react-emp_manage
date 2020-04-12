@@ -9,6 +9,23 @@ import { faSearch, faTh, faBell, faBars } from "@fortawesome/free-solid-svg-icon
 import { InputGroup, InputGroupAddon, InputGroupText, Input, FormGroup } from 'reactstrap';
 
 class Search extends Component {
+    constructor(){
+        super()
+        this.state = {inputName:"",department:"",availability:""};
+        this.previousState = this.state;
+    }
+
+    handleInputName = (e) =>{
+        this.previousState = this.state;
+        this.setState({inputName:e.target.value});
+    }
+    submitchange = (event) => {
+        event.preventDefault();
+        // if(this.state!==this.previousState){
+            this.props.filterEmpList(this.state);
+        // }
+    }
+
     render() {
         return (
             <div>
@@ -40,10 +57,10 @@ class Search extends Component {
                                                 </InputGroupAddon>
                                                 <Input style={{ 'border': '0', 'padding': '0' }}
                                                     type="text"
-                                                    name="inputBox"
-                                                    id="searchByName"
+                                                    name="inputName"
+                                                    value = {this.state.inputName}
                                                     placeholder="Type in a name.."
-
+                                                    onChange={this.handleInputName}
                                                 />
                                             </InputGroup>
                                         </div>
@@ -74,7 +91,7 @@ class Search extends Component {
                                     </Col>
                                     <Col md="2" style={{ padding: "0" }}>
                                         <div style={{ 'marginBottom': '19px' }}></div>
-                                        <Button style={{ 'padding': '8px' }} variant="info" size="sm" type="submit">
+                                        <Button style={{ 'padding': '8px' }} onClick={this.submitchange} variant="info" size="sm" type="submit">
                                             Filter <FontAwesomeIcon style={{ 'marginTop': 'inherit' }} className="search-icon" icon={faSearch}></FontAwesomeIcon>
                                         </Button>
                                     </Col>

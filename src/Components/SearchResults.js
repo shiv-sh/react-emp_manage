@@ -13,10 +13,11 @@ class SearchResults extends Component {
     constructor(props) {
         super(props);
         console.log(props)
+        this.state = {empList:props.empList}
         this.employes = props.empList;
-        this.empData = this.employes.map((item, key) => {
-            return (<tr style={{ 'padding': '0' }}>
-                <td style={{ 'padding': '0', fontSize: '13px', width: '100%' }} key={item.id}>
+        this.empData = this.state.empList.map((item, index) => {
+            return (<tr key={index} style={{ 'padding': '0' }}>
+                <td style={{ 'padding': '0', fontSize: '13px', width: '100%' }}>
                     <Row style={{ padding: '0', margin: '0', width: 'fit-content' }}>
                         <Col md="3" style={{ padding: '0' }}>
                             <BadgeAvatars empdata={item} />
@@ -27,11 +28,11 @@ class SearchResults extends Component {
                         </Col>
                     </Row>
                 </td>
-                <td style={{ fontSize: '13px' }} key={item.id}>{item.department}</td>
-                <td style={{ fontSize: '13px' }} key={item.id}>{item.phone}</td>
-                <td style={{ fontSize: '13px', padding: '0', paddingTop: '10px' }} key={item.id}><span className={item.availability ? 'green-dot mr-1' : 'red-dot mr-1'}>
+                <td style={{ fontSize: '13px' }}>{item.department}</td>
+                <td style={{ fontSize: '13px' }}>{item.phone}</td>
+                <td style={{ fontSize: '13px', padding: '0', paddingTop: '10px' }}><span className={item.availability ? 'green-dot mr-1' : 'red-dot mr-1'}>
                 </span><span className={item.availability ? 'avail-color' : 'not-avail-color'}>{item.availability ? 'Available' : 'Out'}</span></td>
-                <td style={{ fontSize: '13px' }} key={item.id}><FontAwesomeIcon icon={faEllipsisV} className='float-left ml-1' /></td>
+                <td style={{ fontSize: '13px' }}><FontAwesomeIcon icon={faEllipsisV} className='float-left ml-1' /></td>
             </tr>)
         })
     }

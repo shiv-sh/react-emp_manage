@@ -20,7 +20,7 @@ class LoginForm extends React.Component {
   constructor(props) {
     super(props);
     this.authenticateUser = this.authenticateUser.bind(this);
-    this.state = { username: "", password: "", currentPage: <Login AuthenticateUser={this.authenticateUser} /> };
+    this.state = { username: "", password: "" };
     this.userDet={};
   }
   // AppNavigator = createAppContainer(AppNavigator);
@@ -41,7 +41,7 @@ class LoginForm extends React.Component {
         <div className={"container"} id="wrap">
           <div className={"row bgClass"} style={{ "marginTop": "15px", "marginBottom": "45px" }}>
             <div className={"col-lg-8 offset-lg-2"}>
-              {this.state.currentPage}
+            <Login AuthenticateUser={this.authenticateUser} />
             </div>
           </div>
         </div>
