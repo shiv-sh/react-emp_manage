@@ -13,8 +13,9 @@ class SearchResults extends Component {
     constructor(props) {
         super(props);
         console.log(props)
-        this.state = {empList:props.empList}
+        this.state = {empList:props.empList,selectedIndex:0}
         this.employes = props.empList;
+        this.selectedEmployee = this.selectedEmployee.bind(this)
     }
 
 
@@ -22,10 +23,15 @@ class SearchResults extends Component {
         this.setState({ empList: nextProps.empList }); 
       }
 
+      selectedEmployee(emp,i) {
+          console.log(emp);
+          this.setState({selectedIndex:i})
+      }  
+
 
     render() {
-        this.empData = this.state.empList.map((item, index) => {
-            return (<tr key={index} style={{ 'padding': '0' }}>
+        this.empData = this.state.empList.map(function(item, index) {
+            return (<tr className={this.state.selectedIndex===index?'selected-row':''} onClick={()=>this.selectedEmployee(item,index)} key={index} style={{ 'padding': '0' }}>
                 <td style={{ 'padding': '0', fontSize: '13px', width: '100%' }}>
                     <Row style={{ padding: '0', margin: '0', width: 'fit-content' }}>
                         <Col md="3" style={{ padding: '0' }}>
@@ -43,7 +49,7 @@ class SearchResults extends Component {
                 </span><span className={item.availability ? 'avail-color' : 'not-avail-color'}>{item.availability ? 'Available' : 'Out'}</span></td>
                 <td style={{ fontSize: '13px' }}><FontAwesomeIcon icon={faEllipsisV} className='float-left ml-1' /></td>
             </tr>)
-        })
+        }.bind(this))
         return (
             <div className="search-results-div">
                 <div>
