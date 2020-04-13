@@ -8,7 +8,11 @@ export const employees = [
         phone:"112233324",
         availability:true,
         picture:"../images/avatar-girl.png",
-        mobile:"(472)276-0193"
+        mobile:"(472)276-0193",
+        office:"Atlanta",
+        city:"Denver",
+        birthday:"March 3",
+        gender:"Female",
     },
     {
         name:"David Warner",
@@ -19,7 +23,11 @@ export const employees = [
         phone:"112233324",
         availability:true,
         picture:"../images/avatar-boy.png",
-        mobile:"(403)293-7845"
+        mobile:"(403)293-7845",
+        office:"Texas",
+        city:"Washington",
+        birthday:"July 7",
+        gender:"Male",
     },
     {
         name:"Mathey Hayden",
@@ -30,7 +38,11 @@ export const employees = [
         phone:"112233324",
         availability:false,
         picture:"../images/avatar-boy.png",
-        mobile:"(307)563-5621"
+        mobile:"(307)563-5621",
+        office:"Chicago",
+        city:"Texas",
+        birthday:"June 27",
+        gender:"Male",
     },
     {
         name:"Suzan Mathew",
@@ -41,7 +53,11 @@ export const employees = [
         phone:"112233324",
         availability:true,
         picture:"../images/avatar-girl.png",
-        mobile:"(222)541-890"
+        mobile:"(222)541-890",
+        office:"Texas",
+        city:"Los Angelas",
+        birthday:"August 7",
+        gender:"Female",
     },
     {
         name:"Lisa Bradford",
@@ -52,7 +68,11 @@ export const employees = [
         phone:"112233324",
         availability:false,
         picture:"../images/avatar-girl.jpeg",
-        mobile:"(455)654-0198"
+        mobile:"(455)654-0198",
+        office:"Atlanta",
+        city:"seatle",
+        birthday:"May 15",
+        gender:"Female",
     },
     {
         name:"Paul Breny",
@@ -63,6 +83,10 @@ export const employees = [
         phone:"112233324",
         availability:true,
         picture:"../images/avatar-boy.png",
-        mobile:"(422)903-4888"
+        mobile:"(422)903-4888",
+        office:"Chicago",
+        city:"Denver",
+        birthday:"December 17",
+        gender:"Male",
     }
 ]

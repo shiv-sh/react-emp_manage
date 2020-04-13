@@ -32,21 +32,51 @@ class EmployeeDetails extends Component {
                     <div className="cont-inf">Contact Information</div>
                 </Row>
                 <Row>
-                    <div className="cont-inf-data">Office Tel:<span style={{color:'black'}}>{` ${this.state.employee.phone}`}</span>
+                    <div className="cont-inf-data">Office Tel:<span className="info-data">{` ${this.state.employee.phone}`}</span>
                     </div>
                 </Row>
                 <Row>
-                    <div className="cont-inf-data">Mobile:<span style={{color:'black'}}>{` ${this.state.employee.mobile}`}</span>
+                    <div className="cont-inf-data">Mobile:<span className="info-data">{` ${this.state.employee.mobile}`}</span>
                     </div>
                 </Row>
                 <Row>
-                    <div className="cont-inf-data">Email:<span style={{color:'black'}}>{` ${this.state.employee.email}`}</span>
+                    <div className="cont-inf-data">Email:<span className="info-data">{` ${this.state.employee.email}`}</span>
                     </div>
                 </Row>
                 <Row className="social-icon-row">
-                    <span style={{padding:'10px'}}><SocialIcon className="social-icon" url="http://linkedin.com/jaketrent" /></span>
-                    <span style={{padding:'10px'}}><SocialIcon url="http://facebook.com/jaketrent" /></span>
-                    <span style={{padding:'10px'}}><SocialIcon url="http://twitter.com/jaketrent" /></span>
+                    <span style={{ padding: '10px' }}><SocialIcon className="social-icon" url="http://linkedin.com/jaketrent" /></span>
+                    <span style={{ padding: '10px' }}><SocialIcon url="http://facebook.com/jaketrent" /></span>
+                    <span style={{ padding: '10px' }}><SocialIcon url="http://twitter.com/jaketrent" /></span>
+                </Row>
+                <Row>
+                    <div className="cont-inf">Work Information</div>
+                </Row>
+                <Row>
+                <div className="cont-inf-data">Department:<span className="info-data">{` ${this.state.employee.department}`}</span>
+                    </div>
+                </Row>
+                <Row>
+                <div className="cont-inf-data">Supervisor:<span className="info-data">{` Shivam Sharma`}</span>
+                    </div>
+                </Row>
+                <Row>
+                <div className="cont-inf-data">Office:<span className="info-data">{` ${this.state.employee.office}`}</span>
+                    </div>
+                </Row>
+                <Row style={{paddingTop:'10px'}}>
+                    <div className="cont-inf">Personal Information</div>
+                </Row>
+                <Row>
+                <div className="cont-inf-data">Sex:<span className="info-data">{` ${this.state.employee.gender}`}</span>
+                    </div>
+                </Row>
+                <Row>
+                <div className="cont-inf-data">Birthday:<span className="info-data">{` ${this.state.employee.birthday}`}</span>
+                    </div>
+                </Row>
+                <Row>
+                <div className="cont-inf-data">City:<span className="info-data">{` ${this.state.employee.city}`}</span>
+                    </div>
                 </Row>
             </div>
         );

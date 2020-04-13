@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Navbar, Nav, Form, FormControl, Button, NavDropdown } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faTh, faBell } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faTh, faBell, faChevronCircleDown } from "@fortawesome/free-solid-svg-icons";
 import '../css/login.css';
+import { InputGroup, InputGroupAddon, InputGroupText, Input, FormGroup } from 'reactstrap';
 
 class Navbar1 extends Component {
     render() {
@@ -24,6 +25,14 @@ class Navbar1 extends Component {
                         <FontAwesomeIcon className="search-icon" style={{ 'marginLeft': '20px' }} icon={faTh}></FontAwesomeIcon>
                         <FontAwesomeIcon className="search-icon ml-3" icon={faBell}></FontAwesomeIcon>
                         <Nav.Link style={{ 'fontSize': 'small' }} href="">Home</Nav.Link>
+                        <NavDropdown id="basic-nav-dropdown" style={{ 'fontSize': 'small' }} href="">
+                            <FormGroup>
+                                <Input className="" type="select" name="select" id="exampleSelect">
+                                    <option>Logout</option>
+                                </Input>
+                            </FormGroup>
+                        </NavDropdown>
+
                     </Nav>
                 </Navbar>
             </div>

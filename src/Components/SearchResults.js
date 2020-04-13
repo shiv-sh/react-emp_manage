@@ -13,7 +13,7 @@ class SearchResults extends Component {
     constructor(props) {
         super(props);
         console.log(props)
-        this.state = { empList: props.empList, selectedEmp: props.empList[0], selectedEmpIndex: 0 }
+        this.state = { empList: props.empList, selectedEmp: props.empList[0], selectedEmpIndex: 0, filteredVal:"" }
         this.employes = props.empList;
         this.selectedEmployee = this.selectedEmployee.bind(this)
         this.selIndex = 0;
@@ -33,6 +33,17 @@ class SearchResults extends Component {
         this.setState({ selectedEmp: emp, selectedEmpIndex: index })
         this.props.empDet(emp);
     }
+
+    filterName = (e) => {
+        let val = e.target.value.toLocaleLowerCase();
+        console.log("ac",val)
+        this.setState({filteredVal:e.target.value});
+        let empList1 = this.state.empList.filter(element => {
+            return element.name.toLocaleLowerCase().includes(val);
+        })
+        console.log("dc",empList1)
+        this.setState({empList:empList1});
+    } 
 
 
     render() {
@@ -67,9 +78,11 @@ class SearchResults extends Component {
                                 </InputGroupAddon>
                                 <Input className="name-filter" style={{ 'border': '0', 'padding': '0', fontSize: '15px' }}
                                     type="text"
+                                    value={this.state.filteredVal}
                                     name="inputBox"
                                     id="searchByName"
                                     placeholder="Filter by name.."
+                                    onChange={this.filterName}
                                 />
                             </InputGroup>
                         </Col>
