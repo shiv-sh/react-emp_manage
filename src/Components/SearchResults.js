@@ -13,7 +13,7 @@ class SearchResults extends Component {
     constructor(props) {
         super(props);
         console.log(props)
-        this.state = { empList: props.empList, selectedEmp: props.empList[0], selectedEmpIndex: 0, filteredVal:"" }
+        this.state = { initialEmpList:props.empList, empList: props.empList, selectedEmp: props.empList[0], selectedEmpIndex: 0, filteredVal:"" }
         this.employes = props.empList;
         this.selectedEmployee = this.selectedEmployee.bind(this)
         this.selIndex = 0;
@@ -21,7 +21,7 @@ class SearchResults extends Component {
 
 
     componentWillReceiveProps(nextProps) {
-        this.setState({ empList: nextProps.empList });
+        this.setState({ empList: nextProps.empList, initialEmpList:nextProps.empList });
         if (nextProps.empList.length > 0) {
             this.setState({ selectedEmp: nextProps.empList[0], selectedEmpIndex: 0 })
         }
@@ -36,12 +36,10 @@ class SearchResults extends Component {
 
     filterName = (e) => {
         let val = e.target.value.toLocaleLowerCase();
-        console.log("ac",val)
         this.setState({filteredVal:e.target.value});
-        let empList1 = this.state.empList.filter(element => {
+        let empList1 = this.state.initialEmpList.filter(element => {
             return element.name.toLocaleLowerCase().includes(val);
         })
-        console.log("dc",empList1)
         this.setState({empList:empList1});
     } 
 
