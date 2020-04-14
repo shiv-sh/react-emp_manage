@@ -21,7 +21,8 @@ class SearchResults extends Component {
 
 
     componentWillReceiveProps(nextProps) {
-        this.setState({ empList: nextProps.empList, initialEmpList:nextProps.empList });
+        console.log(nextProps.empList)
+        this.setState({ empList: nextProps.empList });
         if (nextProps.empList.length > 0) {
             this.setState({ selectedEmp: nextProps.empList[0], selectedEmpIndex: 0 })
         }
@@ -40,7 +41,8 @@ class SearchResults extends Component {
         let empList1 = this.state.initialEmpList.filter(element => {
             return element.name.toLocaleLowerCase().includes(val);
         })
-        this.setState({empList:empList1});
+        // this.setState({empList:empList1});
+        this.props.nameFilter(empList1);
     } 
 
 

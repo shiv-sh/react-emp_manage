@@ -29,6 +29,10 @@ class Dashboard extends React.Component {
   selectedEmployee(currentEmp){
     this.setState({selectedEmployee:currentEmp})
   }
+  nameFilter (list) {
+    console.log(list)
+    this.setState({Employees:list})
+  }
   filterEmpListSearch(data){
     console.log("uiui",data);
     if(data.inputName!=="") {
@@ -87,7 +91,8 @@ class Dashboard extends React.Component {
           <Col md="9">
             <Search filterEmpList={this.filterEmpListSearch} />
             <div className="adv-fil"><span className="adv-filter-text"><FontAwesomeIcon style={{ 'marginTop': 'inherit' }} icon={faBars}></FontAwesomeIcon> Advanced Filter</span></div>
-            <SearchResults empList = {this.state.Employees} empDet = {this.selectedEmployee.bind(this)}/>
+            <SearchResults empList = {this.state.Employees} empDet = {this.selectedEmployee.bind(this)}
+            nameFilter = {this.nameFilter.bind(this)}/>
           </Col>
           <Col md="3">
             <EmployeeDetails selectedEmp = {this.state.selectedEmployee} />
