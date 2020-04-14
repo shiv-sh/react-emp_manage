@@ -12,6 +12,8 @@ class EmployeeDetails extends Component {
 
     componentWillReceiveProps(nextProps) {
         this.setState({ employee: nextProps.selectedEmp });
+        let firstName =  nextProps.selectedEmp.name.split(' ')[0]
+        this.btnText = 'View '+firstName[0].toUpperCase() + firstName.slice(1)  + '\'s' + ' Full Profile';
     }
 
     render() {
@@ -52,31 +54,35 @@ class EmployeeDetails extends Component {
                     <div className="cont-inf">Work Information</div>
                 </Row>
                 <Row>
-                <div className="cont-inf-data">Department:<span className="info-data">{` ${this.state.employee.department}`}</span>
+                    <div className="cont-inf-data">Department:<span className="info-data">{` ${this.state.employee.department}`}</span>
                     </div>
                 </Row>
                 <Row>
-                <div className="cont-inf-data">Supervisor:<span className="info-data">{` Shivam Sharma`}</span>
+                    <div className="cont-inf-data">Supervisor:<span className="info-data">{` Shivam Sharma`}</span>
                     </div>
                 </Row>
                 <Row>
-                <div className="cont-inf-data">Office:<span className="info-data">{` ${this.state.employee.office}`}</span>
+                    <div className="cont-inf-data">Office:<span className="info-data">{` ${this.state.employee.office}`}</span>
                     </div>
                 </Row>
-                <Row style={{paddingTop:'10px'}}>
+                <Row style={{ paddingTop: '10px' }}>
                     <div className="cont-inf">Personal Information</div>
                 </Row>
                 <Row>
-                <div className="cont-inf-data">Sex:<span className="info-data">{` ${this.state.employee.gender}`}</span>
+                    <div className="cont-inf-data">Sex:<span className="info-data">{` ${this.state.employee.gender}`}</span>
                     </div>
                 </Row>
                 <Row>
-                <div className="cont-inf-data">Birthday:<span className="info-data">{` ${this.state.employee.birthday}`}</span>
+                    <div className="cont-inf-data">Birthday:<span className="info-data">{` ${this.state.employee.birthday}`}</span>
                     </div>
                 </Row>
                 <Row>
-                <div className="cont-inf-data">City:<span className="info-data">{` ${this.state.employee.city}`}</span>
+                    <div className="cont-inf-data">City:<span className="info-data">{` ${this.state.employee.city}`}</span>
                     </div>
+                </Row>
+                <Row className="btn-row">
+                <div className="hr-div"></div>
+                    <button className="profile-btn">{this.btnText}</button>
                 </Row>
             </div>
         );

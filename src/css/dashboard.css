@@ -144,7 +144,7 @@
     width: 100%;
     font-family: cursive;
     font-weight: 500;
-    font-size: 15px;
+    font-size: 13px;
     color: grey;
 }
 .social-icon {
@@ -159,4 +159,19 @@
 }
 .info-data {
     color: #504545;
+}
+.btn-row {
+    padding-top: 80px;
+    bottom: 0;
+    margin: 0;
+}
+.profile-btn {
+    width: 100%;
+    height: 40px;
+    background-color: white;
+   border:0;
+}
+.hr-div {
+    border: 1px solid lightgray;
+    width: 100%;
 }

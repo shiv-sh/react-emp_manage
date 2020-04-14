@@ -13,15 +13,20 @@ class SearchResults extends Component {
     constructor(props) {
         super(props);
         console.log(props)
-        this.state = { initialEmpList:props.empList, empList: props.empList, selectedEmp: props.empList[0], selectedEmpIndex: 0, filteredVal:"" }
+        this.state = {
+            initialEmpList: props.empList, empList: props.empList, selectedEmp: props.empList[0], selectedEmpIndex: 0, filteredVal: "",
+            listSortBy: 'Alphabetical A-Z'
+        }
         this.employes = props.empList;
         this.selectedEmployee = this.selectedEmployee.bind(this)
-        this.selIndex = 0;
+        this.selIndex = 0;       
     }
 
+    componentDidMount() {
+        this.Sorting(this.state.empList,this.state.listSortBy)
+    }
 
     componentWillReceiveProps(nextProps) {
-        console.log(nextProps.empList)
         this.setState({ empList: nextProps.empList });
         if (nextProps.empList.length > 0) {
             this.setState({ selectedEmp: nextProps.empList[0], selectedEmpIndex: 0 })
@@ -37,13 +42,33 @@ class SearchResults extends Component {
 
     filterName = (e) => {
         let val = e.target.value.toLocaleLowerCase();
-        this.setState({filteredVal:e.target.value});
+        this.setState({ filteredVal: e.target.value });
         let empList1 = this.state.initialEmpList.filter(element => {
             return element.name.toLocaleLowerCase().includes(val);
         })
         // this.setState({empList:empList1});
         this.props.nameFilter(empList1);
-    } 
+    }
+
+    sortList = (e) => {
+        console.log(e.target.value);
+        this.setState({ listSortBy: e.target.value })
+        this.Sorting(this.state.empList, e.target.value)
+    }
+
+    Sorting(list, sortby) {
+        console.log("Sorting",list,sortby)
+        // let sortbY = sortbY || 'Alphabetical A-Z';
+        let sortedList
+        if (sortby === 'Alphabetical A-Z') {
+            sortedList = list.sort((a, b) => (a.name > b.name) ? 1 : -1)
+        } else {
+            sortedList = list.sort((a, b) => (a.name < b.name) ? 1 : -1)
+        }
+
+        this.setState({ empList: sortedList });
+        this.selectedEmployee(sortedList[0],0)
+    }
 
 
     render() {
@@ -93,8 +118,10 @@ class SearchResults extends Component {
                                 </Col>
                                 <Col md="7" style={{ padding: '0' }}>
                                     <FormGroup>
-                                        <Input className="dropdown-alpha" type="select" name="select" id="exampleSelect">
+                                        <Input className="dropdown-alpha" type="select" name="select" id="exampleSelect"
+                                            value={this.state.listSortBy} onChange={this.sortList}>
                                             <option>Alphabetical A-Z</option>
+                                            <option>Alphabetical Z-A</option>
                                         </Input>
                                     </FormGroup>
                                 </Col>
