@@ -8,8 +8,9 @@ import BadgeAvatars from './avatar';
 
 class Navbar1 extends Component {
     action = (e) => {
-        console.log(e,this.props);
-        // this.history.push('/')
+        if(e==="logout") {
+        this.props.logout();
+        }
     }
 
     render() {

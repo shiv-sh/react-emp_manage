@@ -21,11 +21,15 @@ class Dashboard extends React.Component {
     super(props);
     let loggedUser = JSON.parse(sessionStorage.getItem('loggedInUser'));
     this.state = {loggedInUser:loggedUser,Employees:employees,selectedEmployee:employees[0]};
-    console.log(loggedUser)
+    console.log(props)
     this.filterEmpListSearch = this.filterEmpListSearch.bind(this);
   }
   componentDidMount() {
     document.body.className = 'backgroundStylingDashboard'
+  }
+  logoutUser(){
+    sessionStorage.clear();
+    this.props.history.push('/');
   }
   selectedEmployee(currentEmp){
     this.setState({selectedEmployee:currentEmp})
@@ -86,7 +90,7 @@ class Dashboard extends React.Component {
         <FontAwesomeIcon icon={faEllipsisH} className='float-left ml-1' />
         </div>
         <Row style={{'margin':'0'}}>
-          <Navbar1 loggedUser = {this.state.loggedInUser} />
+          <Navbar1 loggedUser = {this.state.loggedInUser} logout={this.logoutUser.bind(this)} />
         </Row>
         <Row style={{margin:'0'}}>
           <Col md="9">
