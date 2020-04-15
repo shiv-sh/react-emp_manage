@@ -45,3 +45,7 @@
     left: -130px;
     padding: 0px;
   }
+  .navbar-expand .navbar-nav .dropdown-menu {
+    position: absolute;
+    left: -130px;
+  }

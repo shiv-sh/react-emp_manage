@@ -4,6 +4,7 @@ export const users = [
             userName:"shiv96",
             password:"itsshivam"
         },
+        availability:true,
         name:"Shivam Sharma",
         email:"shiv96@comp.com",
         role:"Software Engineer",

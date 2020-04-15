@@ -17,11 +17,12 @@ class EmployeeDetails extends Component {
     }
 
     render() {
+        let avatarSize = {height:'50px',width:'50px'}
         return (
             <div>
                 <Row style={{ paddingTop: '10px' }}>
                     <Col md="5" style={{ padding: '0' }}>
-                        <BadgeAvatars empdata={this.state.employee} isBadge={false} />
+                        <BadgeAvatars empdata={this.state.employee} isBadge={false} size={avatarSize} />
                     </Col>
                     <Col md="7" style={{ padding: '0' }}>
                         <div className="emp-det">{this.state.employee.name}</div>

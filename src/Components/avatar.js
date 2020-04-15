@@ -42,9 +42,9 @@ export default function BadgeAvatars(props) {
         }}
         variant="dot"
       >
-        <Avatar alt={props.name} src={props.picture} style={{height:'30px',width:'30px'}} />
+        <Avatar alt={props.name} src={props.picture} style={{height:props.size.height,width:props.size.width}} />
       </StyledBadge>:<StyledBadge>
-        <Avatar alt={props.name} src={props.picture} style={{height:'60px',width:'60px'}} />
+        <Avatar alt={props.name} src={props.picture} style={{height:props.size.height,width:props.size.width}} />
       </StyledBadge>}
     </span>
   );

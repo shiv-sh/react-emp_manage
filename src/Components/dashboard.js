@@ -19,8 +19,9 @@ import { employees } from "../emp-details/all_emp_det";
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {loggedInUser:props.loggedInUser,Employees:employees,selectedEmployee:employees[0]};
-    console.log(props.loggedInUser)
+    let loggedUser = JSON.parse(sessionStorage.getItem('loggedInUser'));
+    this.state = {loggedInUser:loggedUser,Employees:employees,selectedEmployee:employees[0]};
+    console.log(loggedUser)
     this.filterEmpListSearch = this.filterEmpListSearch.bind(this);
   }
   componentDidMount() {
@@ -85,7 +86,7 @@ class Dashboard extends React.Component {
         <FontAwesomeIcon icon={faEllipsisH} className='float-left ml-1' />
         </div>
         <Row style={{'margin':'0'}}>
-          <Navbar1 />
+          <Navbar1 loggedUser = {this.state.loggedInUser} />
         </Row>
         <Row style={{margin:'0'}}>
           <Col md="9">

@@ -33,11 +33,13 @@ class LoginForm extends React.Component {
   }
 
   authenticateUser(userDetails) {
-   if( users.filter(user => {
+    let user = users.filter(user => {
       return user.loginCred.userName===userDetails.username && user.loginCred.password===userDetails.password
-    }).length>0) {
+    })
+   if( user.length>0) {
     this.setState({ username: userDetails.username, password: userDetails.password })
     console.log("in login form", userDetails);
+    sessionStorage.setItem('loggedInUser', JSON.stringify(user[0]));
     this.props.history.push('/dashboard');
     this.userDet = {username:this.state.username,password:this.state.password};
     } else {

@@ -72,12 +72,13 @@ class SearchResults extends Component {
 
 
     render() {
+        let avatarSize = {height:'30px',width:'30px'}
         this.empData = this.state.empList.map(function (item, index) {
             return (<tr className={this.selIndex == index ? 'selected-row' : ''} onClick={() => this.selectedEmployee(item, index)} key={index} style={{ 'padding': '0' }}>
                 <td style={{ 'padding': '0', fontSize: '13px', width: '100%' }}>
                     <Row style={{ padding: '0', margin: '0', width: 'fit-content' }}>
                         <Col md="3" style={{ padding: '0' }}>
-                            <BadgeAvatars empdata={item} isBadge={true} />
+                            <BadgeAvatars empdata={item} isBadge={true} size={avatarSize} />
                         </Col>
                         <Col md="9" style={{ padding: '1' }}>
                             <div>{item.name}</div>
