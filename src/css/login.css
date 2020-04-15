@@ -37,3 +37,11 @@
     font-family: sans-serif;
     color: grey;
   }
+  .show-error {
+    font-family: sans-serif;
+    color:red;
+  }
+  .logout {
+    left: -130px;
+    padding: 0px;
+  }

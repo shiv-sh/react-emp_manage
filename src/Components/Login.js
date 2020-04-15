@@ -7,16 +7,22 @@ import '../css/login.css';
 class Login extends React.Component {
   constructor() {
     super();
-    this.state = { username: "", password: "" };
+    this.state = { username: "", password: "",isError:"" };
   }
   emailLabel =  "Email or Username";
   passwordLabel = "Password";
   nextScreen = <login/>
   handleUsernameChange = (e) => {
     this.setState({ username: e.target.value });
+    if(e.target.value==="") {
+      this.props.noError()
+    }
   }
   handlePasswordChange = (e) => {
     this.setState({ password: e.target.value });
+    if(e.target.value==="") {
+      this.props.noError()
+    }
   }
 
   handleSubmit = (event) => {
@@ -42,7 +48,7 @@ class Login extends React.Component {
           <Form className="form-horizontal" onSubmit={this.handleSubmit}>
             <Form.Group controlId="formHorizontalUsername">
               <Col md="12">
-                <div className="input-label">{this.emailLabel}</div>
+                <div className={this.props.isError?"show-error":"input-label"}>{this.emailLabel}</div>
                 <input  className="input no-outline" size="lg" value={this.state.username} name="username"
                   onChange={this.handleUsernameChange} ref="username" type="text" required/>
               </Col>
@@ -50,7 +56,7 @@ class Login extends React.Component {
 
             <Form.Group controlId="formHorizontalPassword">
               <Col md="12">
-                <div className="input-label">{this.passwordLabel}</div>
+                <div className={this.props.isError?"show-error":"input-label"}>{this.passwordLabel}</div>
                 <input className="input no-outline" size="lg" value={this.state.password} name="password"
                   onChange={this.handlePasswordChange} ref="password" type="password" required />
               </Col>

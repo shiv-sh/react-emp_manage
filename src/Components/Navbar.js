@@ -27,7 +27,7 @@ class Navbar1 extends Component {
                         <Nav.Link style={{ 'fontSize': 'small' }} href="">Home</Nav.Link>
                         <NavDropdown id="basic-nav-dropdown" style={{ 'fontSize': 'small' }} href="">
                             <FormGroup>
-                                <Input className="" type="select" name="select" id="exampleSelect">
+                                <Input value className="" type="select" name="select" id="exampleSelect">
                                     <option>Logout</option>
                                 </Input>
                             </FormGroup>
