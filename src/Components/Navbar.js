@@ -5,11 +5,13 @@ import { faSearch, faTh, faBell, faChevronCircleDown, faChevronDown, faSignOutAl
 import '../css/login.css';
 import { InputGroup, InputGroupAddon, InputGroupText, Input, FormGroup } from 'reactstrap';
 import BadgeAvatars from './avatar';
+import { connect } from 'react-redux';
 
 class Navbar1 extends Component {
     action = (e) => {
-        console.log(e,this.props);
-        // this.history.push('/')
+        if(e==="logout") {
+        this.props.logout();
+        }
     }
 
     render() {
@@ -47,4 +49,8 @@ class Navbar1 extends Component {
     }
 }
 
-export default Navbar1;
+const MapStateToProps = state => ({
+    loggedUser:state.applicationState.loggedInUser
+  })
+  
+  export default connect(MapStateToProps,{})(Navbar1)
