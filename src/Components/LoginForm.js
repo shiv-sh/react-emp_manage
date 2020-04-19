@@ -7,6 +7,8 @@ import '../css/login.css'
 // import { createAppContainer } from "react-navigation";
 import { withNavigation } from "react-navigation";
 import { users } from '../emp-details/authenticate_users';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import {
   BrowserRouter as Router,
   Switch,
@@ -16,6 +18,9 @@ import {
   useHistory,
   useLocation,
 } from "react-router-dom";
+
+
+import { login, getInitialEmployees } from '../actions/loginActions'
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -38,8 +43,9 @@ class LoginForm extends React.Component {
     })
    if( user.length>0) {
     this.setState({ username: userDetails.username, password: userDetails.password })
-    console.log("in login form", userDetails);
     sessionStorage.setItem('loggedInUser', JSON.stringify(user[0]));
+    this.props.login(user[0]);
+    this.props.getInitialEmployees()
     this.props.history.push('/dashboard');
     this.userDet = {username:this.state.username,password:this.state.password};
     } else {
@@ -48,6 +54,7 @@ class LoginForm extends React.Component {
   }
   render() {
     return (
+      // <Provider store = {store}>
       <div>
         <div className={"container"} id="wrap">
           <div className={"row bgClass"} style={{ "marginTop": "15px", "marginBottom": "45px" }}>
@@ -65,8 +72,13 @@ class LoginForm extends React.Component {
           </Switch>
         </Router>
       </div>
+      // </Provider>
     )
   }
 }
+LoginForm.protoTypes = {
+  login:PropTypes.func.isRequired,
+  getInitialEmployees:PropTypes.func.isRequired
+};
 
-export default LoginForm;
+export default connect(null, {login,getInitialEmployees})(LoginForm)

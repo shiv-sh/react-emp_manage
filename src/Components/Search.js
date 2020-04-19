@@ -7,6 +7,9 @@ import { MDBCol, MDBIcon } from "mdbreact";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faTh, faBell, faBars } from "@fortawesome/free-solid-svg-icons";
 import { InputGroup, InputGroupAddon, InputGroupText, Input, FormGroup } from 'reactstrap';
+import { setEmpInView } from '../actions/loginActions';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 class Search extends Component {
     constructor(){
@@ -21,20 +24,63 @@ class Search extends Component {
     }
     handleDepartmentChange = (e) => {
         this.previousState = this.state;
-        console.log(e.target.value);
         this.setState({department:e.target.value});
     }
     handleAvailabilityChange = (e) => {
         this.previousState = this.state;
-        console.log(e.target.value);
         this.setState({availability:e.target.value});
     }
     submitchange = (event) => {
         event.preventDefault();
         if(this.state!==this.previousState){
-            this.props.filterEmpList(this.state);
+            this.filterEmpListSearch(this.state);
         }
     }
+
+
+    filterEmpListSearch(data){
+        if(data.inputName!=="") {
+          let emp = this.props.allEmployees.filter(val=> {
+             return val.name.toLocaleLowerCase() === data.inputName.toLocaleLowerCase();
+          })
+          this.props.setEmpInView(emp)
+        } else {
+          if(data.department==="All"){
+            this.props.setEmpInView(this.props.allEmployees)
+          } if(data.department!=="All") {
+          let emp = this.props.allEmployees.filter(val=> {
+            return val.department.toLocaleLowerCase() === data.department.toLocaleLowerCase();
+         })
+         this.props.setEmpInView(emp)
+        }
+        if(data.availability!=="All"){
+          if(data.department!=="All"){
+          if(data.availability.toLocaleLowerCase()==="available"){
+              let emp = this.props.allEmployees.filter(val=> {
+                return val.availability===true && val.department===data.department;
+             })
+             this.props.setEmpInView(emp)
+          } else {
+            this.props.setEmpInView(this.props.allEmployees.filter(val=> {
+              return val.availability===false && val.department===data.department;
+           }))
+          }
+        } else {
+          if(data.availability.toLocaleLowerCase()==="available"){
+            this.props.setEmpInView(this.props.allEmployees.filter(val=> {
+              return val.availability===true;
+           }))
+          } else {
+            this.props.setEmpInView(this.props.allEmployees.filter(val=> {
+              return val.availability===false;
+           }))
+          }
+        }
+        }
+        } 
+      }
+
+
 
     render() {
         return (
@@ -115,4 +161,13 @@ class Search extends Component {
     }
 }
 
-export default Search;
+Search.propTypes = {
+    setEmpInView: PropTypes.func.isRequired,
+    allEmployees:PropTypes.array.isRequired
+}
+
+const MapStateToProps = state => ({
+    allEmployees: state.applicationState.allEmployees,
+})
+
+export default connect(MapStateToProps, {setEmpInView})(Search);

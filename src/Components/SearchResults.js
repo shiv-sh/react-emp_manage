@@ -6,74 +6,59 @@ import { Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faTh, faBell, faBars, faEllipsisV } from "@fortawesome/free-solid-svg-icons";
 import { InputGroup, InputGroupAddon, InputGroupText, Input, FormGroup } from 'reactstrap';
+import { setSelectedEmp, setEmpInView } from '../actions/loginActions';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 
 
 class SearchResults extends Component {
     constructor(props) {
         super(props);
-        console.log(props)
-        this.state = {
-            initialEmpList: props.empList, empList: props.empList, selectedEmp: props.empList[0], selectedEmpIndex: 0, filteredVal: "",
-            listSortBy: 'Alphabetical A-Z'
-        }
-        this.employes = props.empList;
+        this.state = { filteredVal: "", listSortBy: 'Alphabetical A-Z'}
         this.selectedEmployee = this.selectedEmployee.bind(this)
-        this.selIndex = 0;       
+        this.selIndex = 0;
     }
 
     componentDidMount() {
-        this.Sorting(this.state.empList,this.state.listSortBy)
-    }
-
-    componentWillReceiveProps(nextProps) {
-        this.setState({ empList: nextProps.empList });
-        if (nextProps.empList.length > 0) {
-            this.setState({ selectedEmp: nextProps.empList[0], selectedEmpIndex: 0 })
-        }
+        this.Sorting(this.props.empInView, this.state.listSortBy)
     }
 
     selectedEmployee(emp, index) {
-        //check later why this.state.selectedEmpIndex is not working
+        this.props.setSelectedEmp(emp)
         this.selIndex = index;
-        this.setState({ selectedEmp: emp, selectedEmpIndex: index })
-        this.props.empDet(emp);
     }
 
     filterName = (e) => {
         let val = e.target.value.toLocaleLowerCase();
         this.setState({ filteredVal: e.target.value });
-        let empList1 = this.state.initialEmpList.filter(element => {
+        let empList1 = this.props.allEmployees.filter(element => {
             return element.name.toLocaleLowerCase().includes(val);
         })
-        // this.setState({empList:empList1});
-        this.props.nameFilter(empList1);
+        this.props.setEmpInView(empList1)
+        this.props.setSelectedEmp(empList1[0])
     }
 
     sortList = (e) => {
-        console.log(e.target.value);
         this.setState({ listSortBy: e.target.value })
-        this.Sorting(this.state.empList, e.target.value)
+        this.Sorting(this.props.allEmployees, e.target.value)
     }
 
     Sorting(list, sortby) {
-        console.log("Sorting",list,sortby)
-        // let sortbY = sortbY || 'Alphabetical A-Z';
         let sortedList
         if (sortby === 'Alphabetical A-Z') {
             sortedList = list.sort((a, b) => (a.name > b.name) ? 1 : -1)
         } else {
             sortedList = list.sort((a, b) => (a.name < b.name) ? 1 : -1)
         }
-
-        this.setState({ empList: sortedList });
-        this.selectedEmployee(sortedList[0],0)
+        this.props.setEmpInView(sortedList)
+        this.selectedEmployee(sortedList[0], 0)
     }
 
 
     render() {
-        let avatarSize = {height:'30px',width:'30px'}
-        this.empData = this.state.empList.map(function (item, index) {
+        let avatarSize = { height: '30px', width: '30px' }
+        this.empData = this.props.empInView.map(function (item, index) {
             return (<tr className={this.selIndex == index ? 'selected-row' : ''} onClick={() => this.selectedEmployee(item, index)} key={index} style={{ 'padding': '0' }}>
                 <td style={{ 'padding': '0', fontSize: '13px', width: '100%' }}>
                     <Row style={{ padding: '0', margin: '0', width: 'fit-content' }}>
@@ -134,7 +119,7 @@ class SearchResults extends Component {
                         </Col>
                     </Row>
                 </div>
-                {this.state.empList.length > 0 ?
+                {this.props.empInView.length > 0 ?
                     <div className="search-results-table">
                         <Table style={{ 'height': this.height }}>
                             <thead>
@@ -156,4 +141,17 @@ class SearchResults extends Component {
     }
 }
 
-export default SearchResults;
+SearchResults.propTypes = {
+    setSelectedEmp: PropTypes.func.isRequired,
+    allEmployees: PropTypes.array.isRequired,
+    empInView: PropTypes.array.isRequired,
+    setEmpInView: PropTypes.func.isRequired
+}
+
+const MapStateToProps = state => ({
+    allEmployees: state.applicationState.allEmployees,
+    selectedEmployee: state.applicationState.selectedEmployee,
+    empInView: state.applicationState.empInView
+})
+
+export default connect(MapStateToProps, { setSelectedEmp, setEmpInView })(SearchResults);
