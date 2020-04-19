@@ -38,6 +38,7 @@ class Dashboard extends React.Component {
 
   logoutUser(){
     sessionStorage.clear();
+    localStorage.clear();
     this.props.history.push('/');
   }
   selectedEmployee(currentEmp){
