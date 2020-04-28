@@ -1,5 +1,6 @@
-import { LOGIN, INITIALLIST, SETSELECTEDEMP, EMPINVIEW } from './types';
+import { LOGIN, INITIALLIST, SETSELECTEDEMP, EMPINVIEW, APIURL } from './types';
 import {employees} from '../emp-details/all_emp_det';
+import { axios } from 'axios'
 
 export const login = (loginObj) => dispatch => {
     dispatch({
@@ -8,11 +9,17 @@ export const login = (loginObj) => dispatch => {
     })
 }
 export const getInitialEmployees = () => dispatch => {
-    dispatch({
-        type:INITIALLIST,
-        payload:employees
-    })
-}
+    axios.get(`${APIURL}/allEmployees`).then(
+        res => {
+            res.data.forEach(obj=>{
+                obj.availability = obj.availability.toLowerCase()==='true';
+            })
+            dispatch({
+                type: INITIALLIST,
+                payload: res.data
+            })
+        })
+};
 export const setSelectedEmp = (selectedEmp) => dispatch => {
     dispatch({
         type:SETSELECTEDEMP,
