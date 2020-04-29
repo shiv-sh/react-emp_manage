@@ -18,9 +18,12 @@ class Navbar1 extends Component {
         let avatarSize = { height: '25px', width: '25px' }
         return (
             <div style={{ width: "100%" }}>
-                <Navbar style={{ 'padding': '0' }} bg="light">
+                <Navbar style={{ 'padding': '0' }} bg="light" expand="lg">
+                <Nav.Link><img className="ml-2 mt-1 logo-img" height='30' alt='logo' /></Nav.Link>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
-                        <img className="ml-2 mt-1 logo-img" height='30' alt='logo' />
+                        
                         <Nav.Link style={{ 'fontSize': 'small' }} href="">Home</Nav.Link>
                         <NavDropdown title="News" id="basic-nav-dropdown" style={{ 'fontSize': 'small' }} href=""></NavDropdown>
                         <Nav.Link style={{ 'fontSize': 'small' }} href="">Events</Nav.Link>
@@ -43,6 +46,7 @@ class Navbar1 extends Component {
                         </NavDropdown>
 
                     </Nav>
+                    </Navbar.Collapse>
                 </Navbar>
             </div>
         );

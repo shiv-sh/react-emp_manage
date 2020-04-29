@@ -1,6 +1,6 @@
 import { LOGIN, INITIALLIST, SETSELECTEDEMP, EMPINVIEW, APIURL } from './types';
 import {employees} from '../emp-details/all_emp_det';
-import { axios } from 'axios'
+import  axios  from 'axios'
 
 export const login = (loginObj) => dispatch => {
     dispatch({
