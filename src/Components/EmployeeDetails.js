@@ -26,7 +26,7 @@ class EmployeeDetails extends Component {
         return (
             <div>
                 <Row style={{ paddingTop: '10px' }}>
-                    <Col md="5" style={{ padding: '0' }}>
+                    <Col md="5">
                         <BadgeAvatars empdata={this.props.selectedEmployee} isBadge={false} size={avatarSize} />
                     </Col>
                     <Col md="7" style={{ padding: '0' }}>
