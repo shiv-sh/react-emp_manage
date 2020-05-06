@@ -35,8 +35,10 @@ class SearchResults extends Component {
         let empList1 = this.props.allEmployees.filter(element => {
             return element.name.toLocaleLowerCase().includes(val);
         })
+        if (empList1.length>0) {
         this.props.setEmpInView(empList1)
         this.props.setSelectedEmp(empList1[0])
+        }
     }
 
     sortList = (e) => {

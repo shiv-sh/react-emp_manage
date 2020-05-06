@@ -64,7 +64,7 @@ class EmployeeDetails extends Component {
                     </div>
                 </Row>
                 <Row>
-                    <div className="cont-inf-data">Supervisor:<span className="info-data">{` Tanvi Mehta`}</span>
+                    <div className="cont-inf-data">Supervisor:<span className="info-data">{` Shivam`}</span>
                     </div>
                 </Row>
                 <Row>
