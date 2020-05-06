@@ -1,8 +1,8 @@
 export const users = [
     {
         loginCred: {
-            userName:"shiv96",
-            password:"itsshivam"
+            userName:"admin",
+            password:"admin"
         },
         availability:true,
         name:"Shivam Sharma",
