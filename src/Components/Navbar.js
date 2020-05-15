@@ -18,7 +18,7 @@ class Navbar1 extends Component {
         let avatarSize = { height: '25px', width: '25px' }
         return (
             <div style={{ width: "100%" }}>
-                <Navbar style={{ 'padding': '0' }} bg="light" expand="lg">
+                <Navbar style={{ 'padding': '0' }} className="nav-colors"  expand="lg">
                 <Nav.Link><img className="ml-2 mt-1 logo-img" height='30' alt='logo' /></Nav.Link>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">

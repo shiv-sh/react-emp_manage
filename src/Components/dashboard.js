@@ -22,7 +22,8 @@ class Dashboard extends React.Component {
   constructor(props) {
     super(props);
     let loggedUser = JSON.parse(sessionStorage.getItem('loggedInUser'));
-    this.state = { loggedInUser: loggedUser, Employees: employees, selectedEmployee: employees[0], showEmpDet:false };
+    this.state = { loggedInUser: loggedUser, Employees: employees,
+      showAdvFilter:false, selectedEmployee: employees[0], showEmpDet:false };
   }
   componentWillMount() {
     document.body.className = 'backgroundStylingDashboard';
@@ -34,6 +35,9 @@ class Dashboard extends React.Component {
   }
   componentDidUpdate() {
 
+  }
+  showAdvFilter() {
+    this.setState({showAdvFilter:!this.state.showAdvFilter})
   }
 
   logoutUser() {
@@ -53,6 +57,7 @@ class Dashboard extends React.Component {
 
 
   render() {
+    const isShow = this.state.showAdvFilter;
     return (
       <MDBContainer>
         <MDBCard className="dash-card" style={{ width: "100%" }}>
@@ -67,10 +72,10 @@ class Dashboard extends React.Component {
             </Row>
             <Row style={{ margin: '0' }}>
               <Col md="9">
-                <div className="emp-details">
+                {isShow?<div className="emp-details">
                   <Search />
-                </div>
-                <div className="adv-fil"><span className="adv-filter-text"><FontAwesomeIcon style={{ 'marginTop': 'inherit' }} icon={faBars}></FontAwesomeIcon> Advanced Filter</span></div>
+                </div>:<div/>}
+                <div className="adv-fil" onClick={()=> this.showAdvFilter()}><span className="adv-filter-text"><FontAwesomeIcon style={{ 'marginTop': 'inherit' }} icon={faBars}></FontAwesomeIcon> Advanced Filter</span></div>
                 <div>
                   <SearchResults empList={this.state.Employees} empDet={this.selectedEmployee.bind(this)}
                     nameFilter={this.nameFilter.bind(this)} />

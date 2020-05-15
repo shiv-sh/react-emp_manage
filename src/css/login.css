@@ -49,3 +49,9 @@
     position: absolute;
     left: -130px;
   }
+  .dropdown-menu {
+    left:-130px !important;
+  }
+  .nav-colors {
+    background-color: ghostwhite !important;
+  }

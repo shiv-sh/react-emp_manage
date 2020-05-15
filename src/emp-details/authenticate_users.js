@@ -10,7 +10,7 @@ export const users = [
         role:"Software Engineer",
         department:"Engineering",
         phone:"8299629917",
-        picture:"../images/avatar-boy.jpg",
+        picture:"admin-img.jpg",
         mobile:"(472)276-0193",
         office:"Atlanta",
         city:"Denver",

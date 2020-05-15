@@ -5,6 +5,7 @@ import { makeStyles, withStyles } from '@material-ui/core/styles';
 import '../css/login.css';
 
 
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -42,9 +43,9 @@ export default function BadgeAvatars(props) {
         }}
         variant="dot"
       >
-        <Avatar alt={props.name} src={props.picture} style={{height:props.size.height,width:props.size.width}} />
+        <Avatar alt={props.name} src={data.picture} style={{height:props.size.height,width:props.size.width}} />
       </StyledBadge>:<StyledBadge>
-        <Avatar alt={props.name} src={props.picture} style={{height:props.size.height,width:props.size.width}} />
+        <Avatar alt={props.name} src={data.picture} style={{height:props.size.height,width:props.size.width}} />
       </StyledBadge>}
     </span>
   );
