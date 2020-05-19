@@ -55,3 +55,7 @@
   .nav-colors {
     background-color: ghostwhite !important;
   }
+
+  .hide-notify {
+    display:none
+  }

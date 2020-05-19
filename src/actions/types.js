@@ -3,3 +3,4 @@ export const INITIALLIST = "INITIALLIST";
 export const SETSELECTEDEMP = "SETSELECTEDEMP";
 export const EMPINVIEW = "EMPINVIEW";
 export const APIURL = "http://localhost:4000";
+export const APPLOCATION = {LOGIN:'LOGIN', DASHBOARD:'DASHBOARD'};

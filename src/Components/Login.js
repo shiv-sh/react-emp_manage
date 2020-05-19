@@ -3,15 +3,21 @@ import { Button, Row, Form, Col } from 'react-bootstrap';
 import { withRouter } from 'react-router';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/login.css';
+import Alert from 'react-bootstrap/Alert'
 
 class Login extends React.Component {
   constructor() {
     super();
-    this.state = { username: "", password: "",isError:"" };
+    this.state = { username: "", password: "",isError:"",removeNotification:false };
   }
   emailLabel =  "Email or Username";
   passwordLabel = "Password";
   nextScreen = <login/>
+  componentDidMount() {
+    setTimeout(() => {
+     this.setState({removeNotification:true})
+  }, 3000)
+  }
   handleUsernameChange = (e) => {
     this.setState({ username: e.target.value });
     if(e.target.value==="") {
@@ -43,6 +49,9 @@ class Login extends React.Component {
           {/* <div className="panel-heading-right">
             <span className="glyphicon glyphicon-pencil"></span>
           </div> */}
+          {this.props.signInmsg.length>1?<Row>
+          <Alert className={this.state.removeNotification?'hide-notify':null} variant='danger' style={{width:'100%'}}>{this.props.signInmsg}</Alert>
+          </Row>:null}
         </div>
         <div id="divLogin" className={"bgImage panel-body"}>
           <Form className="form-horizontal" onSubmit={this.handleSubmit}>

@@ -18,6 +18,7 @@ import {
   useHistory,
   useLocation,
 } from "react-router-dom";
+import authStatus from '../auth';
 
 
 import { login, getInitialEmployees } from '../actions/loginActions'
@@ -26,12 +27,17 @@ class LoginForm extends React.Component {
   constructor(props) {
     super(props);
     this.authenticateUser = this.authenticateUser.bind(this);
-    this.state = { username: "", password: "", isError:false };
+    this.state = { username: "", password: "", isError:false, showSignInmsg:'' };
     this.userDet={};
+    console.log("from protected routes",props)
+    if(props.location.state && props.location.state.from.pathname === "/dashboard") {
+      this.state.showSignInmsg = 'You need to login!!';
+    }
   }
   // AppNavigator = createAppContainer(AppNavigator);
   componentDidMount() {
     document.body.className = 'backgroundStyling'
+    // sessionStorage.setItem('isAuthenticated',false)
   }
   hideError() {
     this.setState({isError:false})
@@ -42,8 +48,10 @@ class LoginForm extends React.Component {
       return user.loginCred.userName===userDetails.username && user.loginCred.password===userDetails.password
     })
    if( user.length>0) {
+    authStatus.setStatus(true);
     this.setState({ username: userDetails.username, password: userDetails.password })
     sessionStorage.setItem('loggedInUser', JSON.stringify(user[0]));
+    sessionStorage.setItem('isAuthenticated',true);
     this.props.login(user[0]);
     this.props.getInitialEmployees()
     this.props.history.push('/dashboard');
@@ -59,7 +67,8 @@ class LoginForm extends React.Component {
         <div className={"container"} id="wrap">
           <div className={"row bgClass"} style={{ "marginTop": "15px", "marginBottom": "45px" }}>
             <div className={"col-lg-8 offset-lg-2"}>
-            <Login isError={this.state.isError} AuthenticateUser={this.authenticateUser} noError={this.hideError.bind(this)} />
+            <Login isError={this.state.isError} AuthenticateUser={this.authenticateUser} 
+            signInmsg={this.state.showSignInmsg} noError={this.hideError.bind(this)} />
             </div>
           </div>
         </div>

@@ -1,0 +1,29 @@
+.emp-profile {
+    background-color: white;
+    height: 70vh;
+    width: 118vh;
+    margin: auto;
+    margin-top: 5%;
+    margin-bottom: 6%;
+}
+
+.profile-card {
+    float: left;
+    border: 1px solid black;
+    box-shadow: 10px 10px 10px grey;
+}
+
+.emp-name {
+    text-align: center;
+    font-size: xx-large;
+    font-weight: 600;
+}
+
+.emp-role-text {
+    display: block !important;
+    text-align:center;
+}
+
+.row-margin {
+    margin:0;
+}

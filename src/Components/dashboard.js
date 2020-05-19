@@ -9,12 +9,14 @@ import Search from './Search';
 import Navbar1 from './Navbar';
 import SearchResults from './SearchResults';
 import EmployeeDetails from './EmployeeDetails';
+import EmpFullProfile from './empFullProfile';
 import { MDBCard, MDBListGroup, MDBListGroupItem, MDBContainer } from "mdbreact";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisH, faBars } from "@fortawesome/free-solid-svg-icons";
 import { employees } from "../emp-details/all_emp_det";
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import  { Redirect } from 'react-router-dom'
 
 
 
@@ -23,10 +25,16 @@ class Dashboard extends React.Component {
     super(props);
     let loggedUser = JSON.parse(sessionStorage.getItem('loggedInUser'));
     this.state = { loggedInUser: loggedUser, Employees: employees,
-      showAdvFilter:false, selectedEmployee: employees[0], showEmpDet:false };
+      showAdvFilter:false, selectedEmployee: employees[0], showEmpDet:false, showProfileComp:false };
   }
   componentWillMount() {
     document.body.className = 'backgroundStylingDashboard';
+    // return <Redirect to='/login'  />
+    // console.log("USER", this.props.loggedUser)
+    // this.props.history.push('/login')
+    if (this.props.loggedUser==={}) {
+      this.props.history.push('/login')
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -43,7 +51,7 @@ class Dashboard extends React.Component {
   logoutUser() {
     sessionStorage.clear();
     localStorage.clear();
-    this.props.history.push('/');
+    this.props.history.push('/login');
   }
   selectedEmployee(currentEmp) {
     this.setState({ selectedEmployee: currentEmp })
@@ -55,9 +63,20 @@ class Dashboard extends React.Component {
     this.setState({showEmpDet:true});
   }
 
+  showFullProfile(val) {
+      this.setState({showProfileComp:val})
+      console.log("VALUE!!!! ",this.state.showProfileComp)
+    
+  }
+
 
   render() {
-    const isShow = this.state.showAdvFilter;
+    // const isShow = this.state.showAdvFilter;
+    // console.log("USER", this.props.loggedUser)
+    // if (this.props.loggedUser) {
+    //   this.props.history.push('/login')
+    //   return 0
+    // }
     return (
       <MDBContainer>
         <MDBCard className="dash-card" style={{ width: "100%" }}>
@@ -70,12 +89,14 @@ class Dashboard extends React.Component {
             <Row style={{ 'margin': '0' }}>
               <Navbar1 logout={this.logoutUser.bind(this)} />
             </Row>
-            <Row style={{ margin: '0' }}>
+            {this.state.showProfileComp?<div className="full-profile"><EmpFullProfile empProfileView={this.showFullProfile.bind(this)}/></div>:null}
+
+            <Row style={{ margin: '0', position:'relative' }}>
               <Col md="9">
-                {isShow?<div className="emp-details">
+                <div className="emp-details">
                   <Search />
-                </div>:<div/>}
-                <div className="adv-fil" onClick={()=> this.showAdvFilter()}><span className="adv-filter-text"><FontAwesomeIcon style={{ 'marginTop': 'inherit' }} icon={faBars}></FontAwesomeIcon> Advanced Filter</span></div>
+                </div>
+                <div className="adv-fil" ><span className="adv-filter-text"><FontAwesomeIcon style={{ 'marginTop': 'inherit' }} icon={faBars}></FontAwesomeIcon> Advanced Filter</span></div>
                 <div>
                   <SearchResults empList={this.state.Employees} empDet={this.selectedEmployee.bind(this)}
                     nameFilter={this.nameFilter.bind(this)} />
@@ -83,10 +104,11 @@ class Dashboard extends React.Component {
 
               </Col>
               <Col md="3" className="emp-details" style={{ height: '86vh' }}>
-                <EmployeeDetails />
+                <EmployeeDetails showDetails={this.showFullProfile.bind(this)} />
               </Col>
             </Row>
 
+            
             <div className="view-profile-mobile" style={{ padding: '30px' }}>
               <Button id="btn-lg" variant="info" size="lg" block onClick={() => this.showEmpdet()} >
                 View {this.props.selectedEmployee.name}'s Profile

@@ -1,4 +1,4 @@
-import { LOGIN, INITIALLIST, SETSELECTEDEMP, EMPINVIEW, APIURL } from './types';
+import { LOGIN, INITIALLIST, SETSELECTEDEMP, EMPINVIEW, APIURL, APPLOCATION } from './types';
 import { employees } from '../emp-details/all_emp_det';
 import axios from 'axios'
 
@@ -38,3 +38,10 @@ export const setEmpInView = (employees) => dispatch => {
         payload: employees
     })
 }
+
+// export const changeAppLocation = (location) => dispatch => {
+//     dispatch({
+//         type: APPLOCATION,
+//         payload: location
+//     })
+// }

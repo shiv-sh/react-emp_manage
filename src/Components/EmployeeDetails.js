@@ -88,7 +88,7 @@ class EmployeeDetails extends Component {
                 </Row>
                 <Row className="btn-row">
                 <div className="hr-div"></div>
-                    <button className="profile-btn">{this.btnText}</button>
+                    <button className="profile-btn" onClick={()=>this.props.showDetails(true)}>{this.btnText}</button>
                 </Row>
             </div>
         );

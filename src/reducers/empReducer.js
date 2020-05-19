@@ -1,10 +1,11 @@
-import { LOGIN, INITIALLIST, SETSELECTEDEMP, EMPINVIEW } from '../actions/types';
+import { LOGIN, INITIALLIST, SETSELECTEDEMP, EMPINVIEW, APPLOCATION } from '../actions/types';
 
 const initialState = {
     loggedInUser: {},
     allEmployees: [],
     empInView: [],
-    selectedEmployee: {}
+    selectedEmployee: {},
+    appLocation: ['/'],
 }
 
 export default function (state = initialState, action) {
@@ -31,6 +32,11 @@ export default function (state = initialState, action) {
                 ...state,
                 empInView:action.payload
             }
+            // case APPLOCATION:
+            // return {
+            //     ...state,
+            //     appLocation:appLocation.push(action.payload)
+            // }
         default:
             return state;
     }
