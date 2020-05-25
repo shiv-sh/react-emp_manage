@@ -1,6 +1,7 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers';
+import logger from './middlewares/logger';
 
 const initialState = {};
 
@@ -32,7 +33,7 @@ const store = createStore(
     rootReducer,
     persistedState,
     compose(
-    applyMiddleware(...middleWare)
+    applyMiddleware(...middleWare,logger)
     ,window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
     )
 )
